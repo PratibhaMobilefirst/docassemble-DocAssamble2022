@@ -1,0 +1,40 @@
+---
+metadata: 
+  title: |
+    Sign in
+  short title: |
+    Thanks
+  show login: False
+---
+mandatory: True 
+question: |
+  Please sign in
+fields: 
+  - html: |
+      <div class="link">
+      <a href="https://gen.lexyalgo.com/interview?i=docassemble.playground4DocAssamble2022%3Aregistration_page.yml#page1">New here? Register</a></div>
+  - Email: email
+    datatype: email
+  - html: |
+      <div class="link">
+      <a href="https://gen.lexyalgo.com/interview?i=docassemble.playground4DocAssamble2022%3Aforgot_password.yml#page1">Forgot Password</a></div>
+  - Password: password
+    datatype: password
+continue button label: Sign in    
+css: |
+  <style>
+    .mytime {
+       color: green;
+    }
+    .link{
+    text-align:right;
+    }
+  </style>
+  
+---
+mandatory: True
+question: Welcome
+subquestion: |
+  You are logged in.
+buttons:
+  - Exit: exit

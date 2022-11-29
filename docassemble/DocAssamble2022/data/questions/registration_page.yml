@@ -1,0 +1,100 @@
+---
+metadata: 
+  title: |
+    Registration Page
+  short title: |
+    Thanks
+  show login: False
+---
+mandatory: True
+question: |
+  Member Registration
+subquestion: | 
+  Already Registered? [sign in](https://gen.lexyalgo.com/interview?i=docassemble.playground4DocAssamble2022%3AsignIn_signUp.yml#page1)
+  > Required fields are marked as <span class = "astric">*</span>
+css: |
+  <style>
+    .astric {
+       color: red;
+    }
+  </style>
+fields:
+  - Member Name: member_name
+    required: false
+    hint: EugeniaHopper
+  - First Name: f_name
+  - Middle Name: m_name
+    required: false
+  - Last Name: l_name
+  - Address Line1: add_line1
+    address autocomplete: True
+  - Address Line2: add_line2
+    address autocomplete: True
+    required: false
+  - City: city
+  - State: state
+    code: |
+      states_list()
+  - Zip Code: zip_code
+  - User Type: user_type
+    choices:
+      - Lawyer: lawyer
+      - User: user
+  - E-mail Address: email
+    datatype: email
+  - Phone: phone
+    required: false
+    datatype: integer
+  - Date of Birth: dob
+    hint: MM/DD/YYYY
+    datatype: date
+ 
+continue button label: submit
+---
+mandatory: True
+question: | 
+  Confirm your password 
+fields:
+  - Password: password
+    datatype: password
+  - Confirm Password: confirm_password
+    datatype: password
+under: |
+  ** * *Password Strength*: Weak**.
+  Use 6-20 characters. Letters are case-sensitive.
+  ### You may not use:
+    * Sequences (e.g., 12345 or 11111)
+    * Personal info (SSN, phone #, DOB)
+    * A password you've used before
+---
+mandatory: True
+code: |
+  if len(password)>=6 and len(password)<=20:
+    if password == confirm_password:
+      welcome
+    else:
+      bad_luck
+  else: 
+    try_again
+---
+mandatory: True
+question: |
+  Welcome **${member_name}** You have successfully registered yourself.
+buttons:
+  - Exit: exit
+event: welcome
+---
+question: |
+  Password didn't match, Please try again.
+buttons:
+  - Exit: exit
+event: bad_luck
+---
+question: |
+ Please length should be between 6-20 characters .
+buttons:
+  - Exit: exit
+event: try_again
+  
+
+

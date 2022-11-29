@@ -1,0 +1,19 @@
+
+---
+mandatory: true
+right: |
+  field: 
+  buttons:
+  - hello
+  - hj
+question: |
+  Your fruit inventory
+subquestion: |
+  This describes your fruit
+  collection.
+  
+  Fruit  | How many
+  -------|---------
+  Apple  | 4
+  Orange | 3
+  Pear   | 6
