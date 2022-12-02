@@ -5,6 +5,10 @@ metadata:
   short title: |
     Thanks
   show login: False
+  auto login: google
+---
+objects:
+  - user: Individual
 ---
 mandatory: True 
 question: |
@@ -13,28 +17,42 @@ fields:
   - html: |
       <div class="link">
       <a href="https://gen.lexyalgo.com/interview?i=docassemble.playground4DocAssamble2022%3Aregistration_page.yml#page1">New here? Register</a></div>
-  - Email: email
+  - Email: user.name.email
     datatype: email
   - html: |
       <div class="link">
       <a href="https://gen.lexyalgo.com/interview?i=docassemble.playground4DocAssamble2022%3Aforgot_password.yml#page1">Forgot Password</a></div>
-  - Password: password
+  - Password: user.name.password
     datatype: password
-continue button label: Sign in    
+continue button label: Sign in
 css: |
   <style>
-    .mytime {
-       color: green;
-    }
     .link{
     text-align:right;
+    padding-top: calc(0.375rem + 1px);
+    padding-bottom: calc(0.375rem + 1px);
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.5;
     }
   </style>
-  
 ---
 mandatory: True
-question: Welcome
+code: |
+  if user.name.email == "mobilefirst@gmail.com" and user.name.password == "Mobilefirst@123":
+    welcome
+  else:
+    sorry
+---
+mandatory: True
+question: Welcome to dashboard
 subquestion: |
-  You are logged in.
-buttons:
-  - Exit: exit
+  Here is a URL for you in a QR code
+  > [QR https://news.google.com]
+event: welcome
+---
+mandatory: True
+question: email or password did not matched!
+subquestion: |
+  Please try again!
+event: sorry

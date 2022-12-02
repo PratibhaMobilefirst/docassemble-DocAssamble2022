@@ -5,6 +5,10 @@ metadata:
   short title: |
     Thanks
   show login: False
+  allow registration: True
+---
+objects:
+  - user: Individual
 ---
 mandatory: True
 question: |
@@ -42,14 +46,14 @@ fields:
       - User: user
   - E-mail Address: email
     datatype: email
-  - Phone: phone
+  - Phone: user.phone_country
     required: false
     datatype: integer
   - Date of Birth: dob
     hint: MM/DD/YYYY
     datatype: date
  
-continue button label: submit
+
 ---
 mandatory: True
 question: | 
@@ -59,9 +63,12 @@ fields:
     datatype: password
   - Confirm Password: confirm_password
     datatype: password
+    
+continue button label: Submit
+
 under: |
   ** * *Password Strength*: Weak**.
-  Use 6-20 characters. Letters are case-sensitive.
+  > Use 6-20 characters. Letters are case-sensitive.
   ### You may not use:
     * Sequences (e.g., 12345 or 11111)
     * Personal info (SSN, phone #, DOB)
@@ -76,6 +83,8 @@ code: |
       bad_luck
   else: 
     try_again
+
+
 ---
 mandatory: True
 question: |

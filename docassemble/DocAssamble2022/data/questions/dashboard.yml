@@ -1,0 +1,30 @@
+metadata: 
+  title: |
+    Dashboard
+  short title: |
+    Thanks
+---
+mandatory: True
+question: |
+  Your fruit inventory
+subquestion: |
+  This describes your fruit
+  collection.
+  
+  Fruit  | How many
+  -------|---------
+  Apple  | 4
+  Orange | 3
+  Pear   | 6
+  
+html: |  
+buttons:
+  - Generate new QDRO
+css: |
+  <style>
+    .btn-da {
+    position: absolute;
+    top: 15vh;
+    right: 10vw;
+    }
+  </style>
