@@ -11,10 +11,11 @@ objects:
   - user: Individual
 ---
 mandatory: True
+field: registration_main
 question: |
   Member Registration
 subquestion: | 
-  Already Registered? [sign in](https://gen.lexyalgo.com/interview?i=docassemble.playground4DocAssamble2022%3AsignIn_signUp.yml#page1)
+  Already Registered? [sign in](https://gen.lexyalgo.com/interview?i=docassemble.playground4DocAssamble20222%3AsignIn_signUp.yml#page1)
   > Required fields are marked as <span class = "astric">*</span>
 css: |
   <style>
@@ -51,11 +52,54 @@ fields:
     datatype: integer
   - Date of Birth: dob
     hint: MM/DD/YYYY
-    datatype: date
- 
+    datatype: date 
 
 ---
 mandatory: True
+field: registration_confirm
+question: |
+  Member Registration
+subquestion: | 
+  Confirmation Page
+fields:
+  - Member Name: member_name
+    required: false
+    disable others: True
+  - First Name: f_name
+  - Middle Name: m_name
+    required: false
+  - Last Name: l_name
+  - Address Line1: add_line1
+    address autocomplete: True
+  - Address Line2: add_line2
+    address autocomplete: True
+    required: false
+  - City: city
+  - State: state
+    code: |
+      states_list()
+  - Zip Code: zip_code
+  - User Type: user_type
+    choices:
+      - Lawyer: lawyer
+      - User: user
+  - E-mail Address: email
+    datatype: email
+  - Phone: user.phone_country
+    required: false
+    datatype: integer
+  - Date of Birth: dob
+    hint: MM/DD/YYYY
+    datatype: date
+    disable others:
+      - member_name
+back button: True
+continue button label: Confirm
+back button label: |
+  Back to edit
+---
+mandatory: True
+field: password_section
 question: | 
   Confirm your password 
 fields:
@@ -63,8 +107,6 @@ fields:
     datatype: password
   - Confirm Password: confirm_password
     datatype: password
-    
-continue button label: Submit
 
 under: |
   ** * *Password Strength*: Weak**.
@@ -89,14 +131,13 @@ code: |
 mandatory: True
 question: |
   Welcome **${member_name}** You have successfully registered yourself.
-buttons:
-  - Exit: exit
 event: welcome
 ---
 question: |
   Password didn't match, Please try again.
-buttons:
-  - Exit: exit
+back button: True
+back button label: |
+  Back to edit
 event: bad_luck
 ---
 question: |
@@ -104,6 +145,5 @@ question: |
 buttons:
   - Exit: exit
 event: try_again
-  
-
+---
 

@@ -7,6 +7,9 @@ metadata:
   show login: False
   auto login: google
 ---
+modules:
+  - .api
+---
 objects:
   - user: Individual
 ---
@@ -16,15 +19,18 @@ question: |
 fields: 
   - html: |
       <div class="link">
-      <a href="https://gen.lexyalgo.com/interview?i=docassemble.playground4DocAssamble2022%3Aregistration_page.yml#page1">New here? Register</a></div>
+      <a href="https://gen.lexyalgo.com/interview?i=docassemble.playground4DocAssamble20222%3Aregistration_page.yml#page1">New here? Register</a></div>
   - Email: user.name.email
     datatype: email
   - html: |
       <div class="link">
-      <a href="https://gen.lexyalgo.com/interview?i=docassemble.playground4DocAssamble2022%3Aforgot_password.yml#page1">Forgot Password</a></div>
+      <a href="https://gen.lexyalgo.com/interview?i=docassemble.playground4DocAssamble20222%3Aforgot_password.yml#page1">Forgot Password</a></div>
+       
   - Password: user.name.password
     datatype: password
+
 continue button label: Sign in
+
 css: |
   <style>
     .link{
@@ -40,14 +46,14 @@ css: |
 mandatory: True
 code: |
   if user.name.email == "mobilefirst@gmail.com" and user.name.password == "Mobilefirst@123":
-    welcome
+    google
   else:
     sorry
 ---
 mandatory: True
 question: Welcome to dashboard
 subquestion: |
-  Here is a URL for you in a QR code
+  Welcome ${get_time()}.
   > [QR https://news.google.com]
 event: welcome
 ---
@@ -56,3 +62,8 @@ question: email or password did not matched!
 subquestion: |
   Please try again!
 event: sorry
+---
+mandatory: True
+question: |
+  [Click here to go to dashboard](${ url_of('https://gen.lexyalgo.com/interview?i=docassemble.playground4DocAssamble20222%3Adashboard.yml#page1') })
+event: google
